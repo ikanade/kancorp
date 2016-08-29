@@ -22,3 +22,10 @@ Add salary details of employee which will store designation and monthly salary.
   3. List of employees earning between 10K to 50K
   
   you are free to add other validations and features.
+
+
+
+
+
+
+Note: This repository supports ssh.
