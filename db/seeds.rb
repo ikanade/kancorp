@@ -15,23 +15,21 @@ end
 
 def create_employees company
 	begin
-	20.times do |iterator|
-		name = Faker::Name.name
-		email = Faker::Internet.email
-		phone = String(Faker::Number.number(10))
-		salary = Faker::Number.number(5)
-		designation = Faker::Company.profession
-		city = CITIES[rand(6)]
-		state = Faker::Address.state
-		locality  = Faker::Address.street_name
-		employee = Employee.create(name:name,email:email,phone:phone,salary:salary,designation:designation)
-		employee_address = Address.create(city: city, state: state, locality: locality)
-		employee.address = employee_address
-		company.employee << employee
-		employee.save
-
-		puts iterator
-	end
+		20.times do |iterator|
+			name = Faker::Name.name
+			email = Faker::Internet.email
+			phone = String(Faker::Number.number(10))
+			salary = Faker::Number.number(5)
+			designation = Faker::Company.profession
+			city = CITIES[rand(6)]
+			state = Faker::Address.state
+			locality  = Faker::Address.street_name
+			employee = Employee.create(name:name,email:email,phone:phone,salary:salary,designation:designation)
+			employee_address = Address.create(city: city, state: state, locality: locality)
+			employee.address = employee_address
+			company.employee << employee
+			employee.save
+			end
 	rescue Exception => e
 		puts e 
 		puts e.message
