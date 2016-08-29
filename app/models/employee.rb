@@ -13,7 +13,7 @@ class Employee < ActiveRecord::Base
 	validates :name, format: { with: /\A[a-zA-Z\s]+\z/, 
 														 message: "only supports letters and spaces" } ,length: { maximum: 50 }
 	validates :email, format: { with: VALID_EMAIL_REGEX }
-	validates :phone,length: { minimum: 10, maximum: 15 },format: { with: /\A\d+\z/ }
+	validates :phone, length: { minimum: 10, maximum: 15 },format: { with: /\A\d+\z/ }
 	validates :email, :phone ,uniqueness: { case_sensitive: false } 
 	validates :salary, numericality:{ only_integer: true, greater_than: 0 }
 	
@@ -24,21 +24,11 @@ class Employee < ActiveRecord::Base
 	end
 
 	def self.in_city city="Pune"
-		Address.where(city:city,resource_type:"Employee").collect{ |address| address.resource }
+		Address.where(city:city,resource_type:"Employee").includes(:resource).map(&:resource)
 	end
 
 	def self.search args
-		if args.length == 2
-			if !args[:name].nil? and !args[:email].nil?
-				Employee.joins(:address).where(name:args[:name],email:args[:email]).pluck(:name,:email,:city,:state,:locality).flatten
-			end
-		elsif  args.length == 1
-			if !args[:name].nil?
-				Employee.joins(:address).where(name:args[:name]).pluck(:name,:email,:city,:state,:locality).flatten
-			elsif !args[:email].nil?
-				Employee.joins(:address).where(email:args[:email]).pluck(:name,:email,:city,:state,:locality).flatten
-			end
-		end
+			Employee.joins(:address).where(args).pluck(:name,:email,:city,:state,:locality).flatten
 	end
 
 	def self.salary_between lower=0,upper=100000000000

@@ -9,8 +9,8 @@ CITIES = %w(Pune Mumbai Aurangabad Nashik Nagpur Bangalore Delhi)
 def create_company 
 	railscorp = Company.create(name:"RailsCorp")
 	railscorp.address = Address.create(city:"Pune",state:"Maharashtra",locality:"Balevadi")
+	#railscorp.save
 	create_employees(railscorp)
-	railscorp.save
 end
 
 def create_employees company
@@ -27,8 +27,7 @@ def create_employees company
 			employee = Employee.create(name:name,email:email,phone:phone,salary:salary,designation:designation)
 			employee_address = Address.create(city: city, state: state, locality: locality)
 			employee.address = employee_address
-			company.employee << employee
-			employee.save
+			company.employees << employee
 			end
 	rescue Exception => e
 		puts e 
