@@ -25,11 +25,10 @@ Add salary details of employee which will store designation and monthly salary.
 
 
 ## Outcome
+	Run - rake db:setup
 	Fire up rails console and call the following model methods to perform the above 3 queries.
 	1. Employee.in_city("CityName")  default cityname = pune
 	2. Employee.search(name:"Name",email:"emp@example.com")  , can accept either name or email or both.
 	3. Employee.salary_between(10000,50000) , default lower=0 , upper = 10000000 .
 
 
-
-Note: This repository supports ssh.
