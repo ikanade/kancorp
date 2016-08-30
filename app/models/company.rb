@@ -4,7 +4,6 @@ class Company < ActiveRecord::Base
   
   def search args
   	args.store(:company_id,self.id)
-  	print args
   	Employee.search(args)
   end
 end

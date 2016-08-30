@@ -27,8 +27,11 @@ Add salary details of employee which will store designation and monthly salary.
 ## Outcome
 	Run - rake db:setup
 	Fire up rails console and call the following model methods to perform the above 3 queries.
-	1. Employee.in_city("CityName")  default cityname = pune
-	2. Employee.search(name:"Name",email:"emp@example.com")  , can accept either name or email or both.
+	1. Address.in_city("CityName")  default cityname = pune
+	2. <CompanyObject>.search(name:"Name",email:"emp@example.com"), can accept either name or email or both.
 	3. Employee.salary_between(10000,50000) , default lower=0 , upper = 10000000 .
 
 
+## Instructions
+
+	Seed file creates two companies, RailsCorp and Oscorp. Each company has a random set of employees except for one employee who is present in both the companies "Ishan Kanade".

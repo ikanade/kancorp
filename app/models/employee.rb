@@ -1,6 +1,9 @@
 class Employee < ActiveRecord::Base
-  belongs_to :company
+	belongs_to :company
   has_one :address , as: :resource
+	scope :salary_between, -> ( lower = 0, upper = 99999999 ){ where(salary:lower..upper)}
+	scope :order_salaries, -> ( limit = 99 ){ order(salary: :desc).limit(limit) }
+  scope :top , -> ( limit ){ order_salaries(limit).pluck(:name,:salary,:designation) }
   VALID_EMAIL_REGEX = /\A[a-z][a-z0-9\.\-\_]+@[[a-z\-]|[^\.\W\_]]+[\.a-z][a-z]+\.[[a-z]|[^\.\W\_]]{2,6}\z/i
 	# Regex Break down
 	# \A[a-z] = makes sure first character is a albhabet 
@@ -25,8 +28,5 @@ class Employee < ActiveRecord::Base
 
 	def self.search args
 		Employee.joins(:address).where(args).pluck(:name,:email,:city,:state,:locality)
-	end
-	def self.salary_between lower=0,upper=100000000000
-		Employee.where(salary:lower..upper)
 	end
 end

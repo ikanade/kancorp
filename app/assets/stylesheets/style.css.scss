@@ -1,0 +1,16 @@
+
+#employee-list {
+	width: 25%;
+	li:first-child{
+		float: left;
+		margin-right: 5%;
+	}
+	li {
+		list-style: none;
+	}
+	list-style: none;
+}
+.clear {
+	clear: both;
+	display: block;
+}

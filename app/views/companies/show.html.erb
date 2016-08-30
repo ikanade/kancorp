@@ -1,0 +1,18 @@
+<p id="notice"><%= notice %></p>
+<%= @company.name %>
+<% @company.employees.each do |employee| %>
+	<div>
+		<ul id="employee-list">
+			<li>
+				<a href="<%= company_employee_path(@company.id,employee.id) %>">
+					<%= employee.name %>
+				</a>
+			</li>
+			<li><%= employee.address.city %></li>
+		</ul>
+	</div>
+<% end %>
+<div class="clear">
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>
+</div>

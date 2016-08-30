@@ -31,7 +31,7 @@ def create_employees company,count
 			designation = Faker::Company.profession
 			employee = Employee.create(name:name,email:email,phone:phone,salary:salary,designation:designation)
 			employee.address = create_address()
-			employee.company_id = company.id
+			company.employees.push(employee)
 			end
 	rescue Exception => e
 		puts e 
