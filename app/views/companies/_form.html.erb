@@ -12,9 +12,11 @@
   <% end %>
   <%= f.text_field :name , placeholder:"Company name"%>
   <p>Enter company Address</p>
-  <%= f.text_field "address[:city]" %>
-  <%= f.text_field "address[:state]" %>
-  <%= f.text_field "address[:locality]" %>
+  <%= f.fields_for :address do |ff| %>
+  	<%= ff.text_field :city %>
+  	<%= ff.text_field :state %>
+  	<%= ff.text_field :locality %>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>
