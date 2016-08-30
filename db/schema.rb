@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160829054531) do
+ActiveRecord::Schema.define(version: 20160829124539) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "resource_id"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20160829054531) do
   end
 
   add_index "employees", ["company_id"], name: "index_employees_on_company_id"
-  add_index "employees", ["email"], name: "index_employees_on_email", unique: true
-  add_index "employees", ["phone"], name: "index_employees_on_phone", unique: true
+  add_index "employees", ["email", "company_id"], name: "index_employees_on_email_and_company_id", unique: true
+  add_index "employees", ["phone", "company_id"], name: "index_employees_on_phone_and_company_id", unique: true
 
 end

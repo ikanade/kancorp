@@ -14,7 +14,7 @@ class Employee < ActiveRecord::Base
 														 message: "only supports letters and spaces" } ,length: { maximum: 50 }
 	validates :email, format: { with: VALID_EMAIL_REGEX }
 	validates :phone, length: { minimum: 10, maximum: 15 },format: { with: /\A\d+\z/ }
-	validates :email, :phone ,uniqueness: { case_sensitive: false } 
+	validates :email, :phone ,uniqueness: { scope: :company, case_sensitive: false } 
 	validates :salary, numericality:{ only_integer: true, greater_than: 0 }
 	
 	before_save :call_me_maybe
@@ -28,9 +28,8 @@ class Employee < ActiveRecord::Base
 	end
 
 	def self.search args
-			Employee.joins(:address).where(args).pluck(:name,:email,:city,:state,:locality).flatten
+		Employee.joins(:address).where(args).pluck(:name,:email,:city,:state,:locality)
 	end
-
 	def self.salary_between lower=0,upper=100000000000
 		Employee.where(salary:lower..upper)
 	end
