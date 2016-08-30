@@ -23,10 +23,6 @@ class Employee < ActiveRecord::Base
 		self.email = email.downcase
 	end
 
-	def self.in_city city="Pune"
-		Address.where(city:city,resource_type:"Employee").includes(:resource).map(&:resource)
-	end
-
 	def self.search args
 		Employee.joins(:address).where(args).pluck(:name,:email,:city,:state,:locality)
 	end
