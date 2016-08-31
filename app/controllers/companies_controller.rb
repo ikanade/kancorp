@@ -59,7 +59,7 @@ class CompaniesController < ApplicationController
 
   private
     def set_company
-      @company = Company.find(params[:id])
+      @company = Company.includes(employees: :address).find(params[:id])
     end
     def company_params
     	params.require(:company).permit(:name,address_attributes:[:city,:state,:locality])
