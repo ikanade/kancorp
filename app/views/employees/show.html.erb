@@ -1,1 +1,13 @@
+<p id="notice"><%= notice %></p>
 <h1><%= @employee.name %></h1>
+<p><b>Address: </b><%= @employee.email %></p>
+<p><b>Phone Number: </b><%= @employee.phone %></p>
+<p><b>Salary: </b><%= @employee.salary %></p>
+<p><b>Designation: </b><%= @employee.designation %></p>
+<p>
+	<b>Address: </b><%= @employee.address.city %>, <%= @employee.address.state %>, <%= @employee.address.locality %>
+</p>
+
+<%= link_to 'Edit', edit_company_employee_path(@employee.company_id,@employee.id) %> |
+<%= link_to 'Back', company_path(@employee.company_id) %>
+<%= link_to 'Destroy', company_employee_path(@employee.company_id,@employee.id), method: :delete, data: { confirm: 'Are you sure?' } %>

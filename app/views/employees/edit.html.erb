@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Edit Employee</h1>
+
+<%= render 'form', path_object: company_employee_path %>
+
+<%= link_to 'Show', company_employee_path(@employee.company_id,@employee.id) %> |
+<%= link_to 'Back', companies_path %>

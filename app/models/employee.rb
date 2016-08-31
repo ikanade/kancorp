@@ -1,7 +1,7 @@
 class Employee < ActiveRecord::Base
 	belongs_to :company
   has_one :address , as: :resource
-  accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :address, reject_if: :all_blank
 
 	scope :salary_between, -> ( lower = 0, upper = 99999999 ){ where(salary:lower..upper)}
 	scope :order_salaries, -> ( limit = 99 ){ order(salary: :desc).limit(limit) }

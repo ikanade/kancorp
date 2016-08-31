@@ -1,0 +1,28 @@
+<%= form_for @employee, url: path_object do |f| %>
+	<% if @employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this company from being saved:</h2>
+
+      <ul>
+      <% @employee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <%= f.text_field :name , placeholder:"Employee name"%>
+  <%= f.email_field :email, placeholder:"Email Address" %>																				
+ 	<%= f.phone_field :phone, placeholder:"Enter Phone Number" %>
+ 	<%= f.number_field :salary, placeholder:"Enter Salary" %>
+ 	<%= f.text_field :designation, placeholder:"Enter Designation" %>
+ 	<%= f.hidden_field :company_id, value: @employee.company_id %>
+  <p>Enter employee Address</p>
+  <%= f.fields_for :address, @employee.address do |ff| %>
+  	<%= ff.text_field :city, placeholder:"City" %>
+  	<%= ff.text_field :state, placeholder:"State" %>
+  	<%= ff.text_field :locality, placeholder:"Locality" %>
+  <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

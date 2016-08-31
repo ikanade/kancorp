@@ -1,5 +1,12 @@
 <p id="notice"><%= notice %></p>
-<%= @company.name %>
+<div class="">
+<h2><%= @company.name %></h2>
+<b>Total Employees:  </b><u><%= @company.employees.count %></u> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to 'Edit', edit_company_path(@company) %> |
+<%= link_to 'Back', companies_path %>
+<%= link_to 'Add Employee', new_company_employee_path(@company) %>
+</div>
 <% @company.employees.each do |employee| %>
 	<div>
 		<ul id="employee-list">
@@ -12,7 +19,4 @@
 		</ul>
 	</div>
 <% end %>
-<div class="clear">
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
-</div>
+
