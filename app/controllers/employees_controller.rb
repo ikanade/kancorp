@@ -20,7 +20,7 @@ class EmployeesController < ApplicationController
 		@employee = Employee.new(employee_params)
 		if @employee.save
 			respond_to do |format|
-				format.html { redirect_to company_employee_path(@company_id,@employee.id), notice:"Employee has been created" }
+				format.html { redirect_to [@employee.company,@employee], notice:"Employee has been created" }
 				format.json { render :show , status: :created, location: @employee}
 			end
 		else 
@@ -34,14 +34,14 @@ class EmployeesController < ApplicationController
 
 	def update
 		if @employee.update(employee_params)
-			redirect_to company_employee_path(@company_id,@employee.id)
+			redirect_to [@employee.company,@employee]
 		else
 			render 'edit'
 		end
 	end
 	def destroy
 		if @employee.destroy
-			redirect_to company_path(@company_id)
+			redirect_to @employee.company
 		else
 			render 'show'
 		end
@@ -50,7 +50,6 @@ class EmployeesController < ApplicationController
 	private 
 		def set_employee_and_company_id
 			@employee = Employee.find(params[:id])
-			@company_id = params[:company_id]
 		end
 		def employee_params
 			params.require(:employee).permit(:name,:email,:phone,:salary,:designation,:company_id,address_attributes: [:city,:state,:locality])

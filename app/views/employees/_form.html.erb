@@ -1,4 +1,4 @@
-<%= form_for @employee, url: path_object do |f| %>
+<%= form_for([@employee.company,@employee]) do |f| %>
 	<% if @employee.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this company from being saved:</h2>
