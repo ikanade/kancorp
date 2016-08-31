@@ -1,4 +1,8 @@
-# RailsCorp
+# Live Demo
+
+	http://paytroll.herokuapp.com/
+
+# PayTroll
 Build models in your demo application to manage company database.
 Company has many of employees(name, email, phone, employee_id).
 Each company has an address.
