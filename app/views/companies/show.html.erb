@@ -1,22 +1,26 @@
 <p id="notice"><%= notice %></p>
 <div class="">
-<h2><%= @company.name %></h2>
+<p><h2><%= @company.name %></h2><%= "#{@company.address.city}, #{@company.address.state}, #{@company.address.locality}"%></p>
 <b>Total Employees:  </b><u><%= @company.employees.count %></u> 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>
 <%= link_to 'Add Employee', new_company_employee_path(@company) %>
+<%= render 'search_form' %>
 </div>
-<% @company.employees.each do |employee| %>
-	<div>
-		<ul id="employee-list">
-			<li>
-				<a href="<%= company_employee_path(@company.id,employee.id) %>">
-					<%= employee.name %>
-				</a>
-			</li>
-			<li><%= employee.address.city %></li>
-		</ul>
-	</div>
+<% if !@search_result.nil? and !@employee.nil? %>
+	<%= "#{@search_result}, #{@employee.name}" %>
+<% else %>
+	<% @company.employees.each do |employee| %>
+		<div>
+			<ul id="employee-list">
+				<li>
+					<a href="<%= company_employee_path(@company.id,employee.id) %>">
+						<%= employee.name %>
+					</a>
+				</li>
+				<li><%= employee.address.city %></li>
+			</ul>
+		</div>
+	<% end %>
 <% end %>
-

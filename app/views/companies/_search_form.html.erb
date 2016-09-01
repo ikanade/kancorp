@@ -1,0 +1,4 @@
+<%= form_for :query, url: search_employee_path do |f| %>
+	<%= f.search_field :name, placeholder:"Search For An Employee" %>
+	<%= f.submit "Submit", disable_with: 'Submiting...' %>
+<% end %>

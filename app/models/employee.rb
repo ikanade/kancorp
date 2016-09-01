@@ -29,7 +29,10 @@ class Employee < ActiveRecord::Base
 		self.email = email.downcase
 	end
 
-	def self.search args
-		Employee.joins(:address).where(args).pluck(:name,:email,:city,:state,:locality)
+	def search args
+		args[:company_id] = self.company_id
+		params = ActiveController::Parameters.new(args).permit(:name,:email,:company_id)			
+		raise ArgumentError unless params.permitted? and !params.empty?
+		Employee.joins(:address).where(params).pluck(:name,:email,:city,:state,:locality)
 	end
 end

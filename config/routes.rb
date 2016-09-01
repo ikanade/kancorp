@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
+	get '/examples' => 'examples#test'
 	resources :companies do 
-		resources :employees
+		resources :employees 
 	end
+	post '/companies/:id/search' => 'companies#search', as: :search_employee
 	root 'companies#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
