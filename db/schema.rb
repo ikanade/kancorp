@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160829124539) do
+ActiveRecord::Schema.define(version: 20160901064054) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer  "resource_id"
@@ -24,6 +24,18 @@ ActiveRecord::Schema.define(version: 20160829124539) do
   end
 
   add_index "addresses", ["resource_type", "resource_id"], name: "index_addresses_on_resource_type_and_resource_id"
+
+  create_table "branches", force: :cascade do |t|
+    t.integer  "company_id"
+    t.string   "name"
+    t.integer  "address_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "category"
+  end
+
+  add_index "branches", ["address_id"], name: "index_branches_on_address_id"
+  add_index "branches", ["company_id"], name: "index_branches_on_company_id"
 
   create_table "companies", force: :cascade do |t|
     t.string   "name"
