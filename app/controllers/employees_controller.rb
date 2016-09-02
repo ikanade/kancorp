@@ -6,7 +6,7 @@ class EmployeesController < ApplicationController
 	end
 
 	def show
-		@employee = Employee.where(company_id:params[:company_id],id:params[:id]).first
+		@employee = Employee.where(id:params[:id]).first
 	end
 
 	def new
@@ -20,7 +20,7 @@ class EmployeesController < ApplicationController
 		@employee = Employee.new(employee_params)
 		if @employee.save
 			respond_to do |format|
-				format.html { redirect_to [@employee.company,@employee], notice:"Employee has been created" }
+				format.html { redirect_to @employee, notice:"Employee has been created" }
 				format.json { render :show , status: :created, location: @employee}
 			end
 		else 
@@ -34,7 +34,7 @@ class EmployeesController < ApplicationController
 
 	def update
 		if @employee.update(employee_params)
-			redirect_to [@employee.company,@employee]
+			redirect_to @employee
 		else
 			render 'edit'
 		end

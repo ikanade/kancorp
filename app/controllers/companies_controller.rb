@@ -47,6 +47,7 @@ class CompaniesController < ApplicationController
   			format.json { render json: @employee, status: 200 } 
   		end
   	else
+  		flash.now[:error] = "User not found"
   		respond_to do |format|
   			@search_result,@employee = nil
   			format.html { render 'show' }

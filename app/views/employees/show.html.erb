@@ -8,6 +8,6 @@
 	<b>Address: </b><%= @employee.address.city %>, <%= @employee.address.state %>, <%= @employee.address.locality %>
 </p>
 
-<%= link_to 'Edit', edit_company_employee_path(@employee.company_id,@employee.id) %> |
+<%= link_to 'Edit', edit_employee_path(@employee) %> |
 <%= link_to 'Back', company_path(@employee.company_id) %>
-<%= link_to 'Destroy', company_employee_path(@employee.company_id,@employee.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Destroy', employee_path(@employee), method: :delete, data: { confirm: 'Are you sure?' } %>

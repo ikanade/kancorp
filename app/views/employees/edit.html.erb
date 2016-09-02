@@ -2,7 +2,7 @@
 
 <h1>Edit Employee</h1>
 
-<%= render 'form', path_object: company_employee_path %>
+<%= render 'form' %>
 
-<%= link_to 'Show', company_employee_path(@employee.company_id,@employee.id) %> |
+<%= link_to 'Show', employee_path(@employee) %> |
 <%= link_to 'Back', companies_path %>
